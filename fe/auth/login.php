@@ -37,7 +37,7 @@
         </div>
         <div class="app-auth-container">
             <div class="logo">
-                <a href="index.html">Neptune</a>
+                <a href="/">Neptune</a>
             </div>
             <p class="auth-description">Silahkan masuk untuk mengelola dashboard</p>
 
