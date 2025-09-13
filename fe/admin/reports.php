@@ -40,10 +40,11 @@ $values = $response->getValues();
                                             <?php break; endforeach; ?>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($values as $index => $row): ?>
+                                            <?php $no = 1; foreach ($values as $index => $row): ?>
                                                 <?php if($index == 0 || (auth()['level'] == 'supplier' && $row[3] != auth()['code'])) continue; ?>
                                                 <tr>
-                                                    <?php foreach ($row as $cell): ?>
+                                                    <td><?=$no++?></td>
+                                                    <?php foreach ($row as $col => $cell): if($col == 0) continue ?>
                                                         <td><?= htmlspecialchars($cell) ?></td>
                                                     <?php endforeach; ?>
                                                 </tr>
