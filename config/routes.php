@@ -13,7 +13,8 @@ use Libs\Web\Route;
 // Route::get('test', [Be\Auth\LoginController::class, 'index']);
     
 Route::get('/', function(){
-    return "Root Site";
+    header('location: /dashboard');
+    die;
 });
 
 Route::get('login', new File('fe/auth/login', true));
