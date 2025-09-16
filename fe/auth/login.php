@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="auth-submit">
-                    <button class="btn btn-primary" id="signInButton">Masuk</button>
+                    <button class="btn btn-primary btn-block w-100" id="signInButton">Masuk</button>
                 </div>
             </form>
             <div class="divider"></div>

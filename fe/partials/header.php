@@ -30,6 +30,18 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/neptune.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/neptune.png" />
+    <style>
+        .app-header .navbar {
+            min-height:70px;
+            height:auto !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .horizontal-menu .app-header .navbar .navbar-nav {
+                flex-direction: column !important; /* susun ke bawah */
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="app horizontal-menu align-content-stretch d-flex flex-wrap">
@@ -43,35 +55,43 @@
             <div class="app-header">
                 <nav class="navbar navbar-light navbar-expand-lg container">
                     <div class="container-fluid">
-                        <div class="navbar-nav" id="navbarNav">
-                            <div class="logo">
-                                <a href="/dashboard">Neptune</a>
-                            </div>
-                           
+                        <!-- Logo -->
+                        <div class="logo">
+                        <a href="/dashboard" class="navbar-brand">Neptune</a>
                         </div>
-                        <div class="d-flex">
-                            <ul class="navbar-nav">
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link" href="/dashboard">Applications</a>
-                                </li>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link" href="/reports">Reports</a>
-                                </li>
-                                <?php if(auth()['level'] == 'admin'): ?>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link" href="/users">Users</a>
-                                </li>
-                                <?php endif ?>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown" data-bs-toggle="dropdown">
-                                        <i class="material-icons-outlined">person</i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end language-dropdown" aria-labelledby="languageDropDown">
-                                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                                    </ul>
-                                </li>
+
+                        <!-- Toggler button -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Navbar items -->
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Applications</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/reports">Reports</a>
+                            </li>
+                            <?php if(auth()['level'] == 'admin'): ?>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/users">Users</a>
+                            </li>
+                            <?php endif ?>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropDown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="material-icons-outlined">person</i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropDown">
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
+                            </li>
+                        </ul>
                         </div>
                     </div>
                 </nav>
+
             </div>

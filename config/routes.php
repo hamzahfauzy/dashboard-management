@@ -20,8 +20,20 @@ Route::get('/', function(){
 Route::get('login', new File('fe/auth/login', true));
 Route::post('login', [Be\Auth\LoginController::class, 'login']);
 
+// Route::get('add-admin', function(){
+//     \Libs\Database\DB::table('users')->insert([
+//         'code' => 'admin',
+//         'name' => 'admin',
+//         'username' => 'admin',
+//         'password' => 'admin',
+//         'level' => 'admin'
+//     ]);
+// });
+
 Route::beforeEnter('sessionRequired')->get('dashboard', new File('fe/admin/dashboard', true));
 Route::beforeEnter('sessionRequired')->get('reports', new File('fe/admin/reports', true));
+Route::beforeEnter('sessionRequired')->get('report-data', new File('be/report-data', true));
+Route::beforeEnter('sessionRequired')->get('report-data-statistic', new File('be/report-data-statistic', true));
 Route::beforeEnter('sessionRequired')->get('users', new File('fe/admin/users', true));
 Route::beforeEnter('sessionRequired')->get('user', [Be\UserController::class, 'show']);
 Route::beforeEnter('sessionRequired')->post('users', [Be\UserController::class, 'store']);

@@ -12,12 +12,18 @@ $users = DB::table('users')->get();
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between">
-                                <h2 class="card-title">Data Users</h2>
+                        <div class="page-description d-flex align-items-center">
+                            <div class="page-description-content flex-grow-1 d-flex justify-content-between">
+                                <h1>Data Users</h1>
 
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal"><i class="material-icons-outlined">add</i> Tambah</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
                             <div class="card-body">
                                 <table id="datatable1" class="display" style="width:100%">
                                     <thead>
@@ -138,6 +144,8 @@ $users = DB::table('users')->get();
     </div>
 <?php loadFile('fe/partials/footer', implode(' ', [
     '<script src="assets/plugins/datatables/datatables.min.js"></script>',
-    '<script src="assets/js/pages/datatables.js"></script>',
+    "<script>const dataTable = $('#datatable1').on('draw.dt', function (e, settings, json, xhr) {
+        document.querySelector('#datatable1').parentNode.classList.add('table-responsive')
+    }).DataTable();</script>",
     '<script src="assets/js/users.js"></script>',
 ])) ?>
