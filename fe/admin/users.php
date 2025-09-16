@@ -23,37 +23,33 @@ $users = DB::table('users')->get();
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <table id="datatable1" class="display" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kode</th>
-                                            <th>Nama</th>
-                                            <th>Username</th>
-                                            <th>Level</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($users as $index => $user): ?>
-                                            <tr>
-                                                <td><?=$index+1?></td>
-                                                <td><?=$user['code']?></td>
-                                                <td><?=$user['name']?></td>
-                                                <td><?=$user['username']?></td>
-                                                <td><?=$user['level']?></td>
-                                                <td>
-                                                    <a href="javascript:void(0)" data-id="<?=$user['id']?>" data-bs-toggle="modal" data-bs-target="#editUserModal" class="btn btn-warning editBtn"><i class="material-icons-outlined">edit</i> Edit</a>
-                                                    <a href="javascript:void(0)" data-id="<?=$user['id']?>" class="btn btn-danger deleteBtn"><i class="material-icons-outlined">delete</i> Hapus</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <table id="datatable1" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                    <th>Level</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($users as $index => $user): ?>
+                                    <tr>
+                                        <td><?=$index+1?></td>
+                                        <td><?=$user['code']?></td>
+                                        <td><?=$user['name']?></td>
+                                        <td><?=$user['username']?></td>
+                                        <td><?=$user['level']?></td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-id="<?=$user['id']?>" data-bs-toggle="modal" data-bs-target="#editUserModal" class="btn btn-warning editBtn"><i class="material-icons-outlined">edit</i> Edit</a>
+                                            <a href="javascript:void(0)" data-id="<?=$user['id']?>" class="btn btn-danger deleteBtn"><i class="material-icons-outlined">delete</i> Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

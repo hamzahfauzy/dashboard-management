@@ -41,6 +41,88 @@
                 flex-direction: column !important; /* susun ke bawah */
             }
         }
+
+        table td, table th {white-space: nowrap;}
+        /* Card style untuk wrapper */
+        .dataTables_wrapper {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        font-family: 'Inter', 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #333;
+        }
+
+        /* Table header */
+        table.dataTable thead th {
+        background: #f9fafb;
+        font-weight: 600;
+        padding: 12px 10px;
+        border-bottom: 2px solid #e5e7eb;
+        }
+
+        /* Table rows */
+        table.dataTable tbody tr {
+        background: #fff;
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+        }
+
+        table.dataTable tbody tr:nth-child(even) {
+        background: #fdfdfd;
+        }
+
+        table.dataTable tbody tr:hover {
+        background: #f1f5f9;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        /* Table cells */
+        table.dataTable tbody td {
+        padding: 10px;
+        vertical-align: middle;
+        border-top: 1px solid #f1f5f9;
+        }
+
+        /* Highlight kolom tertentu */
+        table.dataTable tbody td:nth-child(2) { /* No Ticket */
+        font-weight: 600;
+        color: #1e40af;
+        }
+        table.dataTable tbody td:nth-child(5) { /* No Kendaraan */
+        font-weight: 600;
+        color: #047857;
+        }
+
+        .dataTables_paginate {
+        display: flex;
+        overflow-x: auto;
+        gap: 4px;
+        }
+
+        .dataTables_paginate .paginate_button {
+        flex: 0 0 auto; /* biar ukuran tetap */
+        }
+
+        /* Length & Search box */
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+        margin-bottom: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        padding: 6px 10px;
+        outline: none;
+        transition: border 0.2s;
+        }
+
+        .dataTables_wrapper .dataTables_filter input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px #2563eb;
+        }
     </style>
 </head>
 <body>
