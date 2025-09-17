@@ -168,6 +168,7 @@
                                 <i class="material-icons-outlined">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropDown">
+                                <li><a class="dropdown-item" href="#">Hai, <?= auth()['name']?></a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                             </li>
