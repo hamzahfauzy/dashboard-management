@@ -32,6 +32,7 @@ Route::post('login', [Be\Auth\LoginController::class, 'login']);
 
 Route::beforeEnter('sessionRequired')->get('dashboard', new File('fe/admin/dashboard', true));
 Route::beforeEnter('sessionRequired')->get('reports', new File('fe/admin/reports', true));
+Route::beforeEnter('sessionRequired')->get('reports/download', new File('be/report-download', true));
 Route::beforeEnter('sessionRequired')->get('report-data', new File('be/report-data', true));
 Route::beforeEnter('sessionRequired')->get('report-data-statistic', new File('be/report-data-statistic', true));
 Route::beforeEnter('sessionRequired')->get('users', new File('fe/admin/users', true));

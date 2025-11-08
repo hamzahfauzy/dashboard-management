@@ -191,5 +191,18 @@ loadFile('fe/partials/header');
             d.filter.driver        = $('#driver').val();
         }
     },
-}); function doFilter(){ dataTable.draw(); $('#exampleModal').modal('hide') } function doPrint(){ console.log('export to excel') }</script> ",
+}); 
+function doFilter(){ dataTable.draw(); $('#exampleModal').modal('hide') } 
+function doPrint(){ 
+    const d = {}
+    d.no_kendaraan  = $('#no_kendaraan').val();
+    d.supplier_group = $('#supplier_group').val();
+    d.nama_supplier = $('#nama_supplier').val();
+    d.tanggal_awal       = $('#tanggal_awal').val();
+    d.tanggal_akhir       = $('#tanggal_akhir').val();
+    d.driver        = $('#driver').val();
+
+    window.location.href = '/reports/download?' + new URLSearchParams(d).toString()
+}
+</script> ",
 ])) ?>
