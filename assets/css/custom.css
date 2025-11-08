@@ -1,1 +1,23 @@
 /* Your Custom CSS Goes here */
+
+.bg-primary {
+    background: #1976D3 !important;
+}
+
+.bg-dark-primary {
+    background: #06157B !important;
+}
+
+.btn-primary {
+    background-color: #1976D3 !important;
+    border-color: #1976D3 !important;
+}
+
+.bg-danger{
+    background-color: #ED3E3E !important;
+}
+
+.btn-danger{
+    background-color: #ED3E3E !important;
+    border-color: #ED3E3E !important;
+}

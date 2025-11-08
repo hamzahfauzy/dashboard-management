@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $columns = [
     'Tanggal' => 2,
@@ -22,102 +22,137 @@ $columns = [
     'Total Pembayaran' => 20,
 ];
 
-loadFile('fe/partials/header'); 
+loadFile('fe/partials/header');
 ?>
-    <div class="app-content">
-        <div class="content-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="page-description d-flex align-items-center">
-                            <div class="page-description-content flex-grow-1 d-flex justify-content-between">
-                                <h1>Data Rekapitulasi Pembelian</h1>
+<div class="container-fluid">
+    <!-- <div class="row mb-4">
+        <div class="col">
+            <div class="page-description d-flex align-items-center">
+                <div class="page-description-content flex-grow-1 d-flex justify-content-between">
+                    <h1>Data Rekapitulasi Pembelian</h1>
 
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="material-icons-outlined">filter_list</i> Filter
-                                </button>
-                            </div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="material-icons-outlined">filter_list</i> Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="row mb-4">
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-danger">
+                            <i class="material-icons-outlined">file_download</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Netto</span>
+                            <span class="widget-stats-amount" id="netto">0</span>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-4">
-                        <div class="card widget widget-stats">
-                            <div class="card-body">
-                                <div class="widget-stats-container d-flex">
-                                    <div class="widget-stats-icon widget-stats-icon-danger">
-                                        <i class="material-icons-outlined">file_download</i>
-                                    </div>
-                                    <div class="widget-stats-content flex-fill">
-                                        <span class="widget-stats-title">Netto</span>
-                                        <span class="widget-stats-amount" id="netto">0</span>
-                                    </div>
-                                </div>
-                            </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col">
+            <div class="bg-white p-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="" class="mb-1">No. Kendaran</label>
+                        <input type="text" id="no_kendaraan" class="form-control form-control-sm" placeholder="No. Kendaran">
+                    </div>
+                    <?php if (auth()['level'] == 'admin'): ?>
+                        <div class="col-auto">
+                            <label for="" class="mb-1">Supplier Group</label>
+                            <input type="text" id="supplier_group" class="form-control form-control-sm" placeholder="Supplier Group">
                         </div>
+                    <?php endif ?>
+                    <div class="col-auto">
+                        <label for="" class="mb-1">Tanggal Awal</label>
+                        <input type="date" id="tanggal_awal" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-auto">
+                        <label for="" class="mb-1">Tanggal Akhir</label>
+                        <input type="date" id="tanggal_akhir" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-auto">
+                        <label for="" class="mb-1">Nama Supplier</label>
+                        <input type="text" id="nama_supplier" class="form-control form-control-sm" placeholder="Nama Supplier">
+                    </div>
+                    <div class="col-auto">
+                        <label for="" class="mb-1">Driver</label>
+                        <input type="text" id="driver" class="form-control form-control-sm" placeholder="Driver">
+                    </div>
+                    <div class="col-auto">
+                        <label for="" class="mb-1"></label>
+                        <button type="button" class="btn btn-primary d-block" onclick="doFilter()"><i class="material-icons-outlined">search</i>Search</button>
+                    </div>
+                    <div class="col-auto" id="xlsx">
+                        <label for="" class="mb-1"></label>
+                        <button type="button" class="btn btn-success d-block" onclick="doPrint()"><i class="material-icons-outlined">print</i>Xlsx</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col">
-                        <table id="datatable1" class="display" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <?php foreach ($columns as $col => $index): ?>
-                                        <th><?= htmlspecialchars($col) ?></th>
-                                    <?php endforeach; ?>
-                                </tr>
-                            </thead>
-                        </table>
+            <table id="datatable1" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <?php foreach ($columns as $col => $index): ?>
+                            <th><?= htmlspecialchars($col) ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+            </table>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">No. Kendaran</label>
-                                            <input type="text" id="no_kendaraan" class="form-control">
-                                        </div>
-                                        <?php if(auth()['level'] == 'admin'): ?>
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">Supplier Group</label>
-                                            <input type="text" id="supplier_group" class="form-control">
-                                        </div>
-                                        <?php endif ?>
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">Nama Supplier</label>
-                                            <input type="text" id="nama_supplier" class="form-control">
-                                        </div>
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">Tanggal Awal</label>
-                                            <input type="date" id="tanggal_awal" class="form-control">
-                                        </div>
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">Tanggal Akhir</label>
-                                            <input type="date" id="tanggal_akhir" class="form-control">
-                                        </div>
-                                        <div class="form-group mb-4">
-                                            <label for="" class="mb-1">Driver</label>
-                                            <input type="text" id="driver" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="doFilter()">Submit</button>
-                                    </div>
-                                </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group mb-4">
+                                <label for="" class="mb-1">No. Kendaran</label>
+                                <input type="text" id="no_kendaraan" class="form-control">
                             </div>
+                            <?php if (auth()['level'] == 'admin'): ?>
+                                <div class="form-group mb-4">
+                                    <label for="" class="mb-1">Supplier Group</label>
+                                    <input type="text" id="supplier_group" class="form-control">
+                                </div>
+                            <?php endif ?>
+                            <div class="form-group mb-4">
+                                <label for="" class="mb-1">Nama Supplier</label>
+                                <input type="text" id="nama_supplier" class="form-control">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="" class="mb-1">Tanggal Awal</label>
+                                <input type="date" id="tanggal_awal" class="form-control">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="" class="mb-1">Tanggal Akhir</label>
+                                <input type="date" id="tanggal_akhir" class="form-control">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="" class="mb-1">Driver</label>
+                                <input type="text" id="driver" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="doFilter()">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <?php loadFile('fe/partials/footer', implode(' ', [
     '<script src="assets/plugins/datatables/datatables.min.js"></script>',
     "<script>const dataTable = $('#datatable1').on('draw.dt', function (e, settings, json, xhr) {
@@ -138,9 +173,11 @@ loadFile('fe/partials/header');
                 $('#netto').html(res.data.total_netto_2)
             })
     }).DataTable({
+    searching: false,
+    lengthChange: false,
     processing: true,
     serverSide: true,
-    filter: false,
+    buttons: ['excelHtml5'],
     ajax: {
         url: '/report-data',
         type: 'GET',
@@ -154,5 +191,5 @@ loadFile('fe/partials/header');
             d.filter.driver        = $('#driver').val();
         }
     },
-}); function doFilter(){ dataTable.draw(); $('#exampleModal').modal('hide') }</script>",
+}); function doFilter(){ dataTable.draw(); $('#exampleModal').modal('hide') } function doPrint(){ console.log('export to excel') }</script> ",
 ])) ?>
