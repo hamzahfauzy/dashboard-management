@@ -27,7 +27,7 @@
     <!-- Theme Styles -->
     <link href="assets/css/main.min.css" rel="stylesheet">
     <link href="assets/css/horizontal-menu/horizontal-menu.css" rel="stylesheet">
-    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/custom.css?v=1" rel="stylesheet">
 
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/neptune.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/neptune.png" />
@@ -157,20 +157,20 @@
 
                 <ul class="nav flex-column gap-2">
                     <li class="nav-item" v-for="menu in menus">
-                        <a href="/dashboard" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['PHP_SELF']) == 'dashboard' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
+                        <a href="/dashboard" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['REQUEST_URI']) == 'dashboard' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
                             <i class="material-icons-outlined">dashboard</i>
                             Applications
                         </a>
                     </li>
                     <li class="nav-item" v-for="menu in menus">
-                        <a href="/reports" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['PHP_SELF']) == 'reports' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
+                        <a href="/reports" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['REQUEST_URI']) == 'reports' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
                             <i class="material-icons-outlined">article</i>
                             Reports
                         </a>
                     </li>
                     <?php if (auth()['level'] == 'admin'): ?>
                         <li class="nav-item" v-for="menu in menus">
-                            <a href="/users" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['PHP_SELF']) == 'users' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
+                            <a href="/users" class="nav-link d-flex align-items-center gap-2 py-3 <?= basename($_SERVER['REQUEST_URI']) == 'users' ? 'bg-primary text-white' : 'text-dark' ?>" aria-current="page">
                                 <i class="material-icons-outlined">people</i>
                                 Users
                             </a>
@@ -184,7 +184,7 @@
                     <i class="material-icons-outlined" id="sidebar-btn">menu</i>
                     <ol class="breadcrumb text-white m-0 p-0">
                         <li class="breadcrumb-item"><a href="/" class="text-white">Home</a></li>
-                        <li class="breadcrumb-item text-capitalize"><?= basename($_SERVER['PHP_SELF']) ?></li>
+                        <li class="breadcrumb-item text-capitalize">Dashboard Management</li>
                     </ol>
                 </div>
                 <ul class="navbar-nav flex-row px-3" style="gap: 20px">

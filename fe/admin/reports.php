@@ -177,6 +177,7 @@ loadFile('fe/partials/header');
     lengthChange: false,
     processing: true,
     serverSide: true,
+    lengthMenu: [20, 50, -1],
     buttons: ['excelHtml5'],
     ajax: {
         url: '/report-data',

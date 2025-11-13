@@ -123,9 +123,9 @@ header('Content-Disposition: attachment; filename="' . $filename . '"');
 
 $output = fopen('php://output', 'w');
 
-fputcsv($output, array_keys($columns));
+fputcsv($output, array_keys($columns), ';');
 foreach ($data as $row) {
-    fputcsv($output, $row);
+    fputcsv($output, $row, ';');
 }
 
 fclose($output);
